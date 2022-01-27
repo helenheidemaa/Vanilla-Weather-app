@@ -19,7 +19,6 @@ return `${day} ${hours}:${minutes}`;
 
 
 function displayTemperature(response){
-console.log(response.data.name)
 let temperatureElement = document.querySelector("#temperature");
 temperatureElement.innerHTML= Math.round(response.data.main.temp);
 let cityElement = document.querySelector("#city");
@@ -40,7 +39,7 @@ let apiKey = "f4e2e7d1dd4f9ad7bc54617b19362453";
 let city= `Tallinn`;
 let units = `metric`;
 let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-console.log(apiUrl);
+
 
 axios.get(apiUrl).then(displayTemperature)
 
