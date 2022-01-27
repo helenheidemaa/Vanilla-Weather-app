@@ -22,7 +22,10 @@ li {
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
-  text-transform: ;
+}
+
+li:first-letter {
+  text-transform: capitalize;
 }
 .weather-app-wrapper {
   max-width: 600px;
