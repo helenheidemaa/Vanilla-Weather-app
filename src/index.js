@@ -21,18 +21,21 @@ return `${day} ${hours}:${minutes}`;
 function displayTemperature(response){
    // console.log(response.data);
 let temperatureElement = document.querySelector("#temperature");
-temperatureElement.innerHTML= Math.round(response.data.main.temp);
 let cityElement = document.querySelector("#city");
-cityElement.innerHTML= response.data.name;
 let descriptionElement = document.querySelector("#description");
-descriptionElement.innerHTML= response.data.weather[0].description;
 let humidityElement = document.querySelector("#humidity");
-humidityElement.innerHTML= response.data.main.humidity;
 let windspeedElement = document.querySelector("#wind-speed");
-windspeedElement.innerHTML= Math.round(response.data.wind.speed);
 let dateElement = document.querySelector("#date");
-dateElement.innerHTML= formatDate(response.data.dt * 1000);
 let iconElement = document.querySelector("#icon");
+
+Ctemperature =  response.data.main.temp;
+
+temperatureElement.innerHTML= Math.round(response.data.main.temp);
+cityElement.innerHTML= response.data.name;
+descriptionElement.innerHTML= response.data.weather[0].description;
+humidityElement.innerHTML= response.data.main.humidity;
+windspeedElement.innerHTML= Math.round(response.data.wind.speed);
+dateElement.innerHTML= formatDate(response.data.dt * 1000);
 iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
@@ -54,17 +57,31 @@ console.log(cityinputElement.value);
 
 function displayFtemperature(event){
     event.preventDefault();
-    let ftemperature= (14 * 9)/5+32;
-    alert(ftemperature);
     let temperatureElement = document.querySelector("#temperature");
+    cLink.classList.remove("active");
+    fLink.classList.add("active");
+    let ftemperature= (Ctemperature * 9)/5+32;
     temperatureElement.innerHTML=Math.round(ftemperature);
-
 }
 
-search("New York");
+function displayCtemperature(event){
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#temperature");
+    cLink.classList.add("active");
+    fLink.classList.remove("active");
+    temperatureElement.innerHTML=Math.round(Ctemperature);
+}
+
+let Ctemperature = null;
+
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit)
 
 let fLink=document.querySelector("#F-link");
 fLink.addEventListener("click", displayFtemperature);
+
+let cLink=document.querySelector("#C-link");
+cLink.addEventListener("click", displayCtemperature);
+
+search("New York");
