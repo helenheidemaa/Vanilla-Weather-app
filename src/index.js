@@ -19,6 +19,7 @@ return `${day} ${hours}:${minutes}`;
 
 
 function displayTemperature(response){
+   // console.log(response.data);
 let temperatureElement = document.querySelector("#temperature");
 temperatureElement.innerHTML= Math.round(response.data.main.temp);
 let cityElement = document.querySelector("#city");
@@ -31,12 +32,15 @@ let windspeedElement = document.querySelector("#wind-speed");
 windspeedElement.innerHTML= Math.round(response.data.wind.speed);
 let dateElement = document.querySelector("#date");
 dateElement.innerHTML= formatDate(response.data.dt * 1000);
+let iconElement = document.querySelector("#icon");
+iconElement.setAttribute("src",   `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 
 
 let apiKey = "f4e2e7d1dd4f9ad7bc54617b19362453";
-let city= `Tallinn`;
+let city= `Paris`;
 let units = `metric`;
 let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
