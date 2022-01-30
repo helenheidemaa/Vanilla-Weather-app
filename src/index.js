@@ -52,7 +52,19 @@ search(cityinputElement.value)
 console.log(cityinputElement.value);
 }
 
+function displayFtemperature(event){
+    event.preventDefault();
+    let ftemperature= (14 * 9)/5+32;
+    alert(ftemperature);
+    let temperatureElement = document.querySelector("#temperature");
+    temperatureElement.innerHTML=Math.round(ftemperature);
+
+}
+
 search("New York");
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit)
+
+let fLink=document.querySelector("#F-link");
+fLink.addEventListener("click", displayFtemperature);
